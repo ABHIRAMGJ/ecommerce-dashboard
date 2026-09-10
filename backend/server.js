@@ -10,7 +10,17 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" }));
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://ecommerce-dashboard-5d7914q34-abhiramgjs-projects.vercel.app"
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => res.json({ ok: true, service: "storeops-backend" }));
