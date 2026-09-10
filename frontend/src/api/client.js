@@ -2,7 +2,13 @@ import axios from "axios";
 
 const ADMIN_KEY_STORAGE = "storeops-admin-key";
 
-const api = axios.create({ baseURL: "/api" });
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
+
+const api = axios.create({
+  baseURL: `${API_URL}/api`,
+});
 
 // Admin-only endpoints (product writes, order reads/writes, dashboard) check
 // this header server-side. Public storefront calls simply ignore it.
