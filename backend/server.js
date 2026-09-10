@@ -10,27 +10,32 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-const cors = require("cors");
-
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://ecommerce-dashboard-5d7914q34-abhiramgjs-projects.vercel.app"
+      "https://ecommerce-dashboard-5d7914q34-abhiramgjs-projects.vercel.app",
+      "https://ecommerce-dashboard.vercel.app"
     ],
     credentials: true,
   })
 );
+
 app.use(express.json());
 
-app.get("/api/health", (_req, res) => res.json({ ok: true, service: "storeops-backend" }));
+app.get("/api/health", (_req, res) => {
+  res.json({ ok: true, service: "storeops-backend" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
-app.use((req, res) => res.status(404).json({ error: "Not found" }));
-// eslint-disable-next-line no-unused-vars
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: "Internal server error" });
@@ -39,5 +44,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 
 connectDB().then(() => {
-  app.listen(PORT, () => console.log(`[server] listening on http://localhost:${PORT}`));
+  app.listen(PORT, () => {
+    console.log(`[server] listening on port ${PORT}`);
+  });
 });
