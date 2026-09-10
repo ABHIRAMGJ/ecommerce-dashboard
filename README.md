@@ -114,3 +114,7 @@ Admin routes require an `x-admin-key` header equal to `ADMIN_PASSWORD`.
   run it against real data.
 - The order-confirmation page shows details from the just-placed order in memory;
   refreshing that page loses them (order lookup by id is admin-only in this build).
+
+
+
+LIVE LINK :  https://ecommerce-dashboard-eta-one.vercel.app/
