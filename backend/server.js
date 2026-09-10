@@ -15,7 +15,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://ecommerce-dashboard-5d7914q34-abhiramgjs-projects.vercel.app",
-      "https://ecommerce-dashboard.vercel.app"
+      "https://ecommerce-dashboard-eta-one.vercel.app",
     ],
     credentials: true,
   })
